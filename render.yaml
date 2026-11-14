@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: study-room-api
+    runtime: python
+    rootDir: server
+    plan: starter
+    buildCommand: >-
+      pip install -r requirements.txt &&
+      pip install uv &&
+      uv tool install "intern-agent[workspace,ocr] @ git+https://github.com/nace-ai/intern" &&
+      $HOME/.local/bin/intern --version
+    startCommand: PATH=$HOME/.local/bin:$PATH uvicorn app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: NACE_API_KEY
+        sync: false
+      - key: DEEPINFRA_API_KEY
+        sync: false
+      - key: INTERN_SYSTEM1
+        value: drex-max-v1.1
+      - key: INTERN_SYSTEM2
+        value: deepinfra/Qwen/Qwen3-235B-A22B-Instruct-2507
+      - key: KEENABLE_API_KEY
+        sync: false
+      - key: ADOBE_PDF_SERVICES_CLIENT_ID
+        sync: false
+      - key: ADOBE_PDF_SERVICES_CLIENT_SECRET
+        sync: false
+      - key: SPEECHMATICS_API_KEY
+        sync: false
+      - key: FRONTEND_ORIGIN
+        sync: false # e.g. https://study-room.vercel.app
+      - key: STUDYROOM_DATA_DIR
+        value: /tmp/studyroom
