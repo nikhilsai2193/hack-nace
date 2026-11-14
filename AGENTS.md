@@ -1,16 +1,9 @@
-# Study Room — developer notes for coding agents
+<!-- BEGIN:nextjs-agent-rules -->
 
-This file is for agents working ON this repository. It must never reach a study room's Intern session: each room's
-workspace lives outside the repo (`$STUDYROOM_DATA_DIR/<room>/workspace`, default `/tmp/studyroom`), because Intern
-reads AGENTS.md from the working directory upward to the nearest `.git`.
+## This is NOT the Next.js you know
 
-- `server/` FastAPI backend. `intern_runner.py` speaks Intern's JSON-RPC over stdio; `normalizer.py` maps raw Intern
-  events to UI events (display only); `grounding.py` handles sources, the manifest and the app-side citation check.
-- `server/intern_config/` templates copied per room: `SYSTEM2.md`, `SYSTEM1.md`, `config.toml` into INTERN_HOME,
-  `AGENTS.md` into the workspace. System 1 policy goes ONLY in INTERN_HOME's SYSTEM1.md.
-- `web/` Next.js frontend; it talks only to `NEXT_PUBLIC_API_BASE_URL`.
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
 
-Hard rules: no mock or offline System 1/System 2 path, no fake partner responses, no app-side judging or blocking of
-tool calls (that is Drex's job inside Intern), never send API keys to the browser.
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
-Checks: `cd web && npm run typecheck && npm run build`; `cd server && .venv/bin/python -m pytest -q tests`.
+<!-- END:nextjs-agent-rules -->
