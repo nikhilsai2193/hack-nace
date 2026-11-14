@@ -1,0 +1,11 @@
+# Per-room Intern config. Copied into <DATA_DIR>/<room>/home/ (INTERN_HOME) for each room.
+# System 1 / System 2 are passed on the command line (--system1 / --system2) by the server.
+
+[capabilities]
+tool_packs = ["base"]
+
+[capabilities.workspace]
+enabled = true
+
+[capabilities.memory]
+enabled = false
