@@ -190,14 +190,3 @@ external research. External research is always labelled EXTERNAL and never overr
   optional partner keys, and `FRONTEND_ORIGIN=https://<your-vercel-app>`. Rooms live in memory and `/tmp`, so use one
   instance.
 - **Vercel** (frontend): root directory `web`, env `NEXT_PUBLIC_API_BASE_URL=https://<render-service>.onrender.com`.
-
-## Known limitations
-
-- State is in memory: a backend restart loses rooms and stops their Intern processes.
-- There's one Intern process per room and no limit on the number of rooms.
-- The Keenable response shape is parsed loosely (`results` / `data` / `items`, then `title` / `url` / `snippet`),
-  because I couldn't check it without a key.
-- The default `INTERN_SYSTEM2` model id is a guess until it's checked against `intern models` with a DeepInfra key.
-  The server refuses to start a room if the id isn't listed.
-- If System 2 doesn't return JSON, the reply is shown as an unattributed "Study group" turn.
-- No auth, billing, real-time voice or multi-user rooms.
